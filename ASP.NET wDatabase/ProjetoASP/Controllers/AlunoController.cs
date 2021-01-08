@@ -14,13 +14,17 @@ namespace ProjetoASP.Controllers
         // GET: Aluno
         public ActionResult CriaAluno()
         {
+            if (Session["Login"] == null) return RedirectToAction("Login", "Registo");
+
             return View();
         }
 
         [HttpPost]
         public ActionResult CriaAluno(Aluno aluno)
         {
-            if(ModelState.IsValid)
+            if (Session["Login"] == null) return RedirectToAction("Login", "Registo");
+
+            if (ModelState.IsValid)
             {
                 string ImagemNome = Path.GetFileNameWithoutExtension(aluno.Imagem.FileName);
                 string ImagemExt = Path.GetExtension(aluno.Imagem.FileName);
@@ -55,6 +59,8 @@ namespace ProjetoASP.Controllers
 
         public ActionResult ListarAluno()
         {
+            if (Session["Login"] == null) return RedirectToAction("Login", "Registo");
+
             ConexaoDB sConnection = new ConexaoDB("localhost", 3307, "root", "root", "formacao");
 
             // Save the regists to a list that will pass on to the view
@@ -92,6 +98,8 @@ namespace ProjetoASP.Controllers
 
         public ActionResult DetalheAluno(int id)
         {
+            if (Session["Login"] == null) return RedirectToAction("Login", "Registo");
+
             // Copy the "Listar Aluno" code
             ConexaoDB sConnection = new ConexaoDB("localhost", 3307, "root", "root", "formacao");
 
@@ -135,6 +143,8 @@ namespace ProjetoASP.Controllers
         [HttpPost]  
         public ActionResult EditarAluno(Aluno aluno)
         {
+            if (Session["Login"] == null) return RedirectToAction("Login", "Registo");
+
             if (ModelState.IsValid)
             {
                 // Verifys if user changed the image
@@ -193,6 +203,8 @@ namespace ProjetoASP.Controllers
         }
         public ActionResult EditarAluno(int? id)
         {
+            if (Session["Login"] == null) return RedirectToAction("Login", "Registo");
+
             // Copy the "Listar Aluno" code
             ConexaoDB sConnection = new ConexaoDB("localhost", 3307, "root", "root", "formacao");
 
@@ -236,6 +248,8 @@ namespace ProjetoASP.Controllers
         [HttpPost, ActionName("EliminarAluno")]
         public ActionResult EliminaAlunoConfirmacao(int? id)
         {
+            if (Session["Login"] == null) return RedirectToAction("Login", "Registo");
+
             ConexaoDB connection = new ConexaoDB("localhost", 3307, "root", "root", "formacao");
 
             using (MySqlConnection sqlConnection = connection.ObterConexao())
@@ -263,6 +277,8 @@ namespace ProjetoASP.Controllers
 
         public ActionResult EliminarAluno(int? id)
         {
+            if (Session["Login"] == null) return RedirectToAction("Login", "Registo");
+
             // Copy the "Listar Aluno" code
             ConexaoDB sConnection = new ConexaoDB("localhost", 3307, "root", "root", "formacao");
 
