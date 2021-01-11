@@ -1,0 +1,10 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{ 
+   ViewBag.Title = "Erro";
+}
+<h1 class="text-danger">
+    Upss, parece que aconteceu algo inesperado, reporte este erro a um desenvolvedor.
+</h1>
+<h2 class="text-danger">Erro: @Model.Exception.Message</h2>
+@Html.ActionLink("Voltar", Model.ActionName, Model.ControllerName)
+

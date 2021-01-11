@@ -50,6 +50,12 @@ namespace ProjetoASP.Controllers
             return RedirectToAction("Registo");
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult Login(Utilizador utilizador)
         {
             if (ModelState.IsValid)
